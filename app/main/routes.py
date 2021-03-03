@@ -10,40 +10,55 @@ from app import app, db
 main = Blueprint('main', __name__)
 
 # Create your routes here.
-@main.route('/')
-def home():
-    '''Homepage with handy links'''
-    return """
-    <html>
-    """
 
-@main.route('/add_todo', methods=['POST'])
+@main.route('/')
+def homepage():
+    all_todo = Todo.query.all()
+    all_users = User.query.all()
+    return render_template('homepage.html',
+        all_todo=all_todo, all_users=all_users)
+
+@main.route('/add_todo', methods=['POST'])#for POST request.form.get()
 def add_todo():
     '''add a todo for your class'''
     return """
 
     HTML
+ # class info so todo goes under the class 
 
     """
-@main.route('/display_todo_list', methods=['GET'])
-def display_todos():
-    """displays todolists for all classes in one place!"""
-    return """
-    html display_todo_list
-    """
 
-@main.route('/delete_list_item', methods=['POST'])
-def delete_list_item():
-    """deletes list items that have been finished"""
+@main.route('/profile/<username>')
+def profile(username):
+    user = User.query.filter_by(username=username).one()
+    return render_template('profile.html', user=user)
 
-    return """
 
-    delete todo
+# @main.route('/display_todos', methods=['GET'])
+# def get_todos():
+#     """displays todolists for all classes in one place!"""
+#     class_name = request.args.get('class')
+#     #create a database query to retrieve todos linked the class selected
 
-    """
-@main.route('/create_class', methods=['POST'])
-def create_class():
-    """ creates current classes"""
-    return """
-        <html>
-   """
+#     #return a list containg each of the todos 
+     
+#     return render_template("display_todos.html",#return the list )
+
+
+
+# @main.route('/delete_list_item', methods=['POST'])
+# def delete_list_item():
+#     """deletes list items that have been finished"""
+#     # error message? if item exists/ suceess messsage 
+#     # redirect to main page  
+#     return """
+
+#     delete todo
+
+#     """
+# @main.route('/create_class', methods=['POST'])
+# def create_class():
+#     """ creates current classes"""
+#     return """
+#         <html>
+#    """

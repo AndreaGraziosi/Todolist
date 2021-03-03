@@ -15,7 +15,7 @@ Welcome to {{ user.username }}'s profile.
 ===================================================
 
    
-        <form action="/??">
+        <form action="/display_todos" method="GET">
             <label>Select your Class:</label>
             <select name="class" id="class">
                 {% for title in user.class %}

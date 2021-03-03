@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Getting Organized!</h2>
+
+<ul>
+{% for todos in all_todo %}
+    <li><a href="/todo/{{ todo.id }}">{{ todo.description }}</a> for {{ class.title }}</li>
+{% endfor %}
+</ul>
+
+<h2>Users</h2>
+
+<p>
+    <a href="/create_user">+ New User</a>
+</p>
+
+<ul>
+    {% for user in all_users %}
+        <li><a href="/profile/{{ user.username }}">{{ user.username }}</a></li>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock %}
