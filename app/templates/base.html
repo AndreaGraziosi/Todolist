@@ -8,12 +8,13 @@
         <body>
             <div id="content">
                 <nav>
-                    <a href="/">Home</a>
+                    
                     <div>
                         {% if current_user.is_authenticated %}
-                        <a href="/add-todo">Add todo's</a>
-                        <a href="/display_todo_list">My todo's</a>
-                        <a href="/delete_list_item">Check off todos</a>
+                        <a href="/add-todo">Todo:</a>
+                        <a href="/create_class">Create a class</a>
+                        <a href="/display_todo_list">My todos</a>
+                        <a href="/delete_list_item">Done</a>
                         <a href="/logout">Log Out</a>
                         {% else %}
                         <a href="/signup">Sign Up</a>

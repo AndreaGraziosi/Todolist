@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>
+Welcome to {{ user.username }}'s profile.
+</p>
+
+<p>
+    {{ user.username }}'s todos:
+
+===================================================
+    here are your classes select a class: 
+    for todos in classes show todos....
+===================================================
+
+   
+        <form action="/??">
+            <label>Select your Class:</label>
+            <select name="class" id="class">
+                {% for title in user.class %}
+              <option value="/display_todos">{{class.title}}</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Submit">
+          </form>
+================================================================
+
+          Display Todos here after above class has been picked.
+================================================================
+    <!-- <ul>
+        {% for book in user.favorite_books %}
+        <li><a href="/book/{{ book.id }}">{{ book.title }}</a></li>
+        {% endfor %}
+    </ul> -->
+</p>
+
+{% endblock %}

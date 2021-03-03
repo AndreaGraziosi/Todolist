@@ -2,15 +2,15 @@
 
 {% block content %}
 
-<form method="POST" action="{{ url_for('main.add_todo') }}">
+<form method="POST" action="{{ url_for('main.create_class') }}">
     {{ form.csrf_token }}
     <fieldset>
-        <p>Add your Todo:</p>
+        <p>Add a Class:</p>
 
-        {{ form.descrition.label }}
-        {{ form.description }}
+        {{ form.title.label }}
+        {{ form.title }}
         <ul>
-        {% for error in form.description.errors %}
+        {% for error in form.title.errors %}
             <li class="error">{{ error }}</li>
         {% endfor %}
         </ul>

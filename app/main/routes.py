@@ -26,7 +26,7 @@ def add_todo():
 
     """
 @main.route('/display_todo_list', methods=['GET'])
-def display_todo_list():
+def display_todos():
     """displays todolists for all classes in one place!"""
     return """
     html display_todo_list
