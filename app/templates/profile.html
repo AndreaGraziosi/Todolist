@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>
+Welcome to {{ user.username }}'s todo lists.
+</p>
+
+
+
+<p>
+    {{ user.username }}'s todo's are:
+
+    <ul>
+        {% for class in user.classes %}
+        <li><a href="/class/{{ class.id }}">{{ class.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for todos in user.todo %}
+        <li><a href="/todo/{{ todo.id }}">{{ todo.description }}</a></li>
+        {% endfor %}
+    </ul>
+</p>
+
+{% endblock %}

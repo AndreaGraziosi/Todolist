@@ -18,15 +18,23 @@ def homepage():
     return render_template('homepage.html',
         all_todo=all_todo, all_users=all_users)
 
-@main.route('/add_todo', methods=['POST'])#for POST request.form.get()
+@main.route('/add_todo', methods=['GET','POST'])#for POST request.form.get()
+@login_required
 def add_todo():
     '''add a todo for your class'''
-    return """
+    form = TodoForm()
 
-    HTML
- # class info so todo goes under the class 
+    if form.validate_on_submit():
+        new_todo = Todo(
+           description = form.description.data
+        )
+        db.session.add(new_todo)
+        db.session.commit()
 
-    """
+        flash('Great! let\'s get to work!')
+        return redirect(url_for('main.display_todos'))
+    return render_template('add_todo.html', form=form)
+
 
 @main.route('/profile/<username>')
 def profile(username):
@@ -35,7 +43,7 @@ def profile(username):
 
 
 # @main.route('/display_todos', methods=['GET'])
-# def get_todos():
+# def display_todos():
 #     """displays todolists for all classes in one place!"""
 #     class_name = request.args.get('class')
 #     #create a database query to retrieve todos linked the class selected
