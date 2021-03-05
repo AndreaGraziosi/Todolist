@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
-from app.models import Todo, Class, User
+from app.models import Todo, Course, User
 
 from app.auth.forms import SignUpForm, LoginForm
 from app import bcrypt
@@ -25,6 +25,7 @@ def signup():
         )
         db.session.add(user)
         db.session.commit()
+        
         flash('Account Created.')
         return redirect(url_for('auth.login'))
     print(form.errors)

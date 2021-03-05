@@ -13,7 +13,7 @@ Welcome to {{ user.username }}'s todo lists.
 
     <ul>
         {% for class in user.classes %}
-        <li><a href="/class/{{ class.id }}">{{ class.title }}</a></li>
+        <li><a href="/course/{{ course.username }}">{{ class.title }}</a></li>
         {% endfor %}
     </ul>
 
