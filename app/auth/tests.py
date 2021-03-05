@@ -1,10 +1,10 @@
 import os
 from unittest import TestCase
 
-from datetime import date
+
  
-from books_app import app, db, bcrypt
-from books_app.models import User, Todo, C
+from app import app, db, bcrypt
+from app.models import User, Todo, Course
 
 """
 Run these tests with the command:
@@ -23,8 +23,8 @@ def add_todo():
     )
     db.session.add(b1)
 
-    a2 = Author(name='Sylvia Plath')
-    b2 = Book(title='The Bell Jar', author=a2)
+    a2 = Course(title='Python')
+    b2 = Todo(description='practice', todo=a2)
     db.session.add(b2)
     db.session.commit()
 
