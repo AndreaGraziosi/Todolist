@@ -60,18 +60,19 @@ def create_course():
 def display_todos(course_id):
     """displays todolists for all courses in one place!"""
     
-    todos = Todo.query.get(course_id)
-    form = TodoForm(obj=todos)
+    courses = Course.query.get(course_id)
+    form = CourseForm(obj=courses)
     
     if form.validate_on_submit():
-        todos.description = form.description.data
+        courses.title=form.title.data
+        
     #return a list containg each of the todos  
         db.session.commit()  
 
         flash('Your todo was updated successfully.')
         return redirect(url_for('main.display_todos', course_id=course_id))
     
-    return render_template("display_todos.html", todos=todos,form=form)
+    return render_template("display_todos.html", courses=courses,form=form)
 
 
 @main.route('/profile/<username>')

@@ -12,8 +12,8 @@ Welcome to {{ user.username }}'s todo lists.
     {{ user.username }}'s todo's are:
 
     <ul>
-        {% for class in user.classes %}
-        <li><a href="/course/{{ course.username }}">{{ class.title }}</a></li>
+        {% for course in user.todo_for_course %}
+        <li><a href="/course/{{ course.id }}">{{ course.title }}</a></li>
         {% endfor %}
     </ul>
 
