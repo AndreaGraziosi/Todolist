@@ -39,7 +39,7 @@ class Todo(db.Model):
     todo_for_course = db.relationship('Course', back_populates='todos')
 
 def __str__(self):
-    return f'Todo: {self.description}>'
+    return f'Todo: {self.description}'
 
 def __repr__(self):
-    return f'Todo: {self.description}>'
+    return f'Todo: {self.description}'

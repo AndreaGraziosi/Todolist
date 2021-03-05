@@ -33,23 +33,25 @@ def add_todo():
         db.session.commit()
 
         flash('Great! let\'s get to work!')
-        return redirect(url_for('main.display_todos'))
+        return redirect(url_for('main.display_todos', todo_id=new_todo.id))
     return render_template('add_todo.html', form=form)
 
 @main.route('/create_course', methods=['GET','POST'])
 @login_required
 def create_course():
     form = CourseForm()
-
+    
+    
     if form.validate_on_submit():
         new_course = Course(
-           title = form.title.data 
+           title = form.title.data
         )
+    
         db.session.add(new_course)
         db.session.commit()
 
         flash('Great! What needs to get done for this course?')
-        return redirect(url_for('main.homepage'))
+        return redirect(url_for('main.homepage', course_id=new_course.id))
     return render_template('create_course.html', form=form)
 
 

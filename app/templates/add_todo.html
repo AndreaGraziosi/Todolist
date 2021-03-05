@@ -10,6 +10,13 @@
         {{form.todo_for_course.label}}
         {{form.todo_for_course}}
 
+        <ul>
+        {% for error in form.todo_for_course.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+            
+
         {{ form.description.label }}
         {{ form.description }}
         <ul>
