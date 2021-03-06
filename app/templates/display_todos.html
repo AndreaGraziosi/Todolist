@@ -3,14 +3,15 @@
 {% block content %}
 
 <p>
-Welcome to {{ user.username }}'s profile.
+Welcome to {{ courses.user }}'s profile.
 </p>
 
 <p>
-    {{ user.username }}'s todos:
-<strong>Courses</strong>
-{% for course in courses.title %}
-{{courses.title}}
+    {{ courses.title }}'s todos:
+
+{% for course in courses.todos %}
+{{courses.titles}}
+{{courses.todos}}
 {% endfor %}
 
 </p>

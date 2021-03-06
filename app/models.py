@@ -15,7 +15,7 @@ class User(UserMixin,db.Model):
     
 
     def __repr__(self):
-        return f'User: {self.username}'
+        return f' {self.username}'
 
 
 class Course(db.Model):

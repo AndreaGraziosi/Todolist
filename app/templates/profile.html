@@ -3,13 +3,13 @@
 {% block content %}
 
 <p>
-Welcome to {{ user.username }}'s todo lists.
+Welcome to {{ user.username }}'s Profile.
 </p>
 
 
 
 <p>
-    {{ user.username }}'s todo's are:
+    <!-- {{ user.username }}'s todo's are:
 
     <ul>
         {% for course in user.todo_for_course %}
@@ -20,6 +20,12 @@ Welcome to {{ user.username }}'s todo lists.
     <ul>
         {% for todos in user.todo %}
         <li><a href="/todo/{{ todo.id }}">{{ todo.description }}</a></li>
+        {% endfor %}
+    </ul> 
+
+    <ul>
+        {% for todo in all_todo %}
+            <li>{{ todo.description }}</a></li>
         {% endfor %}
     </ul>
 </p>

@@ -22,19 +22,21 @@ def homepage():
 @login_required
 def add_todo():
     '''add a todo for your courses'''
+    
     form = TodoForm()
-
+    
     if form.validate_on_submit():
         new_todo = Todo(
            description = form.description.data,
-           todo_for_course = form.todo_for_course.data
+           todo_for_course = form.todo_for_course.data,
         )
+
         db.session.add(new_todo)
         db.session.commit()
 
         flash('Great! let\'s get to work!')
-        return redirect(url_for('main.display_todos', todo_id=new_todo.id))
-    return render_template('add_todo.html', form=form)
+        return redirect(url_for('main.display_todos', course_id=new_todo.course_id ))
+    return render_template('add_todo.html', form=form,)
 
 @main.route('/create_course', methods=['GET','POST'])
 @login_required
@@ -44,7 +46,8 @@ def create_course():
     
     if form.validate_on_submit():
         new_course = Course(
-           title = form.title.data
+           title = form.title.data,
+           user_id =current_user.id
         )
     
         db.session.add(new_course)
@@ -55,13 +58,14 @@ def create_course():
     return render_template('create_course.html', form=form)
 
 
-@main.route('/display_todos/<course_id>', methods=['GET', 'POST'])
+@main.route('/display_todos/<course_id>)', methods=['GET', 'POST'])
 @login_required
 def display_todos(course_id):
     """displays todolists for all courses in one place!"""
     
     courses = Course.query.get(course_id)
     form = CourseForm(obj=courses)
+
     
     if form.validate_on_submit():
         courses.title=form.title.data
@@ -78,22 +82,23 @@ def display_todos(course_id):
 @main.route('/profile/<username>')
 @login_required
 def profile(username):
+    all_todo = Todo.query.all()
     user = User.query.filter_by(username=username).one()
-    return render_template('profile.html', user=user)
+    
+    return render_template('profile.html', user=user, all_todo=all_todo)
 
-@main.route('/delete_list_item <todo_id>', methods=['POST'])
-@login_required
-def delete_list_item(todo_id):
-    """deletes list items that have been finished"""
-    todo = Todo.query.get(todo_id)
-    if todo not in current_user.todo_for_class:
-        flash('this todo was not in the list')
-    else:
-        current_user.todo_for_course.remove(todo)
-        db.session.add(current_user)
-        db.session.commit()
-        flash('Done with this todo!')
-    return redirect(url_for('main.display_todos', todo_id=todo_id))
+
+# @main.route('/delete_list_item <todo_id>', methods=['POST'])
+# @login_required
+# def delete_list_item(id):
+#     """deletes list items that have been finished"""
+    
+    
+#         current_user.todo_for_course.remove(todo)
+#         db.session.add(current_user)
+#         db.session.commit()
+#         flash('Done with this todo!')
+#     return redirect(url_for('main.display_todos', todo_id=todo_id))
 
 
 
