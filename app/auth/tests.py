@@ -8,7 +8,7 @@ from app.models import User, Todo, Course
 
 """
 Run these tests with the command:
-python -m unittest books_app.auth.tests
+python -m unittest app.auth.tests
 """
 
 #################################################
